@@ -9,16 +9,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 @login_required
-def share_note(request, note_id):
-    note = Note.objects.get(id=note_id)
-    if request.method == 'POST':
-        shared_usernames = request.POST.getlist('shared_users')
-        shared_users = User.objects.filter(username__in=shared_usernames)
-        note.shared_with.set(shared_users)
-        return redirect('note_detail', note_id=note_id)
-    else:
-        all_users = User.objects.exclude(username=request.user.username)
-        return render(request, 'share_note.html', {'note': note, 'all_users': all_users})
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
