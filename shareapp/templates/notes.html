@@ -1,85 +1,65 @@
-<!-- index.html -->
+{% extends 'index.html' %}
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Notes Sharing Platform</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f1f1f1;
-      padding: 20px;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    ul.notes-list {
-      list-style-type: none;
-      padding: 0;
-    }
-    li.note-item {
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      background-color: #f9f9f9;
-    }
-    li.note-item:hover {
-      background-color: #e9e9e9;
-    }
-    .note-title {
-      font-weight: bold;
-    }
-    .note-info {
-      margin-top: 5px;
-      font-size: 12px;
-      color: #888;
-    }
-    .note-actions {
-      margin-top: 10px;
-    }
-    .note-actions a {
-      margin-right: 10px;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Notes Sharing Platform</h1>
+{% block title %}
+Notes Sharing Platform - My Notes
+{% endblock %}
 
-<!-- notes.html -->
+{% block content %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    padding: 20px;
+  }
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My Notes</title>
-</head>
-<body>
-  <ul>
-    {% for note in notes %}
-    <li>
-     
-      <p>{{ note.content }}</p>
-      <p>Type: {{ note.get_type_display }}</p>
-      <p>Created at: {{ note.created_at }}</p>
-      <a href="{{ note.file_name.url }}">{{ note.file_name }}</a>
-      <!-- Display other fields as needed -->
-    </li>
-    {% empty %}
-    <li>No notes available.</li>
-    {% endfor %}
-  </ul>
-</body>
-</html>
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-  </div>
-</body>
-</html>
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+
+  li:hover {
+    background-color: #e9e9e9;
+  }
+
+  p.note-title {
+    font-weight: bold;
+  }
+
+  p.note-info {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #888;
+  }
+
+  a.note-link {
+    text-decoration: none;
+    color: #000;
+  }
+</style>
+
+<ul>
+  {% for note in notes %}
+  <li>
+    <p class="note-title">{{ note.content }}</p>
+    <p>Type: {{ note.get_type_display }}</p>
+    <p class="note-info">Created at: {{ note.created_at }}</p>
+    <a href="{{ note.file_name.url }}" class="note-link">{{ note.file_name }}</a>
+    <!-- Display other fields as needed -->
+  </li>
+  {% empty %}
+  <li>No notes available.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

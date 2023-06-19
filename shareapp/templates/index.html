@@ -1,5 +1,3 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,36 +47,49 @@
       margin-right: 10px;
       text-decoration: none;
     }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    .navbar a {
+      float: left;
+      color: #fff;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+      color: #333;
+    }
+
+    .navbar a.active {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
   </style>
 </head>
+<body>
+  <div class="navbar">
+    <a href="{% url 'dashboard' %}" class="active">Dashboard</a>
+    <a href="{% url 'display_notes' %}">My Notes</a>
+    <a href="{% url 'create_note' %}">Create Note</a>
+    <!-- Add more links as needed -->
+  </div>
 <body>
   <div class="container">
     <h1>Notes Sharing Platform</h1>
 
-<!-- notes.html -->
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My Notes</title>
-</head>
-<body>
-  <ul>
-    {% for note in notes %}
-    <li>
-     
-      <p>{{ note.content }}</p>
-      <p>Type: {{ note.get_type_display }}</p>
-      <p>Created at: {{ note.created_at }}</p>
-      <a href="{{ note.file_name.url }}">{{ note.file_name }}</a>
-      <!-- Display other fields as needed -->
-    </li>
-    {% empty %}
-    <li>No notes available.</li>
-    {% endfor %}
-  </ul>
-</body>
-</html>
+    {% block content %}{% endblock %}
 
   </div>
 </body>

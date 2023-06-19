@@ -1,0 +1,101 @@
+<!-- create_note.html -->
+
+{% extends 'index.html' %}
+
+{% block title %}
+Create Note
+{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+  .form-container {
+    margin-top: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #555;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<h1>Create Note</h1>
+
+<div class="container">
+  <div class="form-container">
+    <form enctype="multipart/form-data" action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="content">Content:</label>
+        {{ form.content }}
+      </div>
+      <div class="form-group">
+        <label for="type">Type:</label>
+        {{ form.type }}
+      </div>
+      <div class="form-group">
+        <label for="shared_with">Share With:</label>
+        {{ form.shared_with }}
+      </div>
+      <div class="form-group">
+        <label for="file">File:</label>
+        {{ form.file_name }}
+      </div>
+      <button type="submit">Share</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
