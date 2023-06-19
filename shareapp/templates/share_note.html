@@ -1,0 +1,10 @@
+<form method="POST" action="{% url 'share_note' note_id=note.id %}">
+    {% csrf_token %}
+    <label for="shared_users">Select users to share with:</label>
+    <select name="shared_users" multiple>
+        {% for user in all_users %}
+            <option value="{{ user.username }}">{{ user.username }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Share</button>
+</form>
