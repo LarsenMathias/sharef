@@ -41,8 +41,6 @@ def display_notes(request):
     shared_notes = Note.objects.filter(shared_with=request.user)
     notes = shared_notes
     return render(request, 'notes.html', {'notes': notes})
-
-
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
